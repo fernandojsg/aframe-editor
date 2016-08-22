@@ -6,6 +6,8 @@ import Collapsible from '../Collapsible';
 import Mixins from './Mixins';
 import {updateEntity} from '../../actions/entity';
 import Events from '../../lib/Events';
+import Clipboard from 'clipboard';
+import {getClipboardRepresentation} from '../../actions/entity';
 
 // @todo Take this out and use updateEntity?
 function changeId (entity, componentName, propertyName, value) {
@@ -25,6 +27,15 @@ export default class CommonComponents extends React.Component {
       if (DEFAULT_COMPONENTS.indexOf(detail.name) !== -1) {
         this.forceUpdate();
       }
+    });
+
+    var clipboard = new Clipboard('[data-action="copy-entity-to-clipboard"]', {
+      text: trigger => {
+        return getClipboardRepresentation(this.props.entity);
+      }
+    });
+    clipboard.on('error', e => {
+      // @todo Show the error on the UI
     });
   }
 
@@ -47,10 +58,17 @@ export default class CommonComponents extends React.Component {
   render () {
     const entity = this.props.entity;
     if (!entity) { return <div></div>; }
+    const entityName = '<' + entity.tagName.toLowerCase() + '>';
+    const entityButtons = <div>
+      <a href='#' title='Copy entity HTML to clipboard' data-action='copy-entity-to-clipboard'
+        className='button fa fa-clipboard' onClick={event => event.stopPropagation()}></a>
+    </div>;
+
     return (
       <Collapsible>
         <div className='collapsible-header'>
-          <span>COMMON</span>
+          <span className='entity-name'>{entityName}</span>
+          {entityButtons}
         </div>
         <div className='collapsible-content'>
           <div className='row'>

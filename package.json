@@ -24,7 +24,8 @@
     "clipboard": "^1.5.12",
     "lodash.debounce": "^4.0.6",
     "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react-dom": "^15.3.0",
+    "react-select": "^1.0.0-beta14"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",

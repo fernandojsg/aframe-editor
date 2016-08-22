@@ -1,4 +1,6 @@
 var React = require('react');
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 export default class SelectWidget extends React.Component {
   static propTypes = {
@@ -15,8 +17,8 @@ export default class SelectWidget extends React.Component {
     this.state = {value: this.props.value || ''};
   }
 
-  onChange = e => {
-    var value = e.target.value;
+  onChange = value => {
+    //var value = e.target.value;
     this.setState({value: value});
     if (this.props.onChange) {
       this.props.onChange(this.props.entity, this.props.componentname, this.props.name, value);
@@ -36,10 +38,23 @@ export default class SelectWidget extends React.Component {
   }
 
   render () {
+    var options = this.props.options.map(value => {
+      return {value: value, label:value};
+    })
+
     return (
-      <select value={this.state.value} onChange={this.onChange}>
-        { this.renderOptions() }
-      </select>
+      <Select
+        className="select-widget"
+        options={options}
+        simpleValue
+        clearable={true}
+        placeholder=""
+        value={this.state.value}
+        noResultsText="No value found"
+        onChange={this.onChange}
+        searchable={true}
+      />
+
     );
   }
 }

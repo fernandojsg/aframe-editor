@@ -301,7 +301,7 @@ div.vec3 {
 }
 
 .collapsible .menu:after {
-  color: #1faaf2;
+  color: #BBB;
   content: '\2807';
   font-size: 12px;
   padding: 5px;
@@ -319,11 +319,11 @@ div.vec3 {
 }
 
 .collapsible.collapsed .static .collapse-button {
-  border-left-color: #1faaf2;
+  border-left-color: #BBB;
 }
 
 .collapsible:not(.collapsed) .static .collapse-button {
-  border-top-color: #1faaf2;
+  border-top-color: #BBB;
 }
 
 .collapsible .content {
@@ -798,4 +798,85 @@ a.help-link:hover {
 
 .new_asset_options .imageUrl {
   width: 400px;
+}
+
+span.entity-name {
+  font-family: Consolas, Andale Mono, Monaco, Courier New, monospace;
+  color: #fff;
+  font-size: 16px;
+}
+
+.add-component {
+  width: 200px;
+}
+
+.Select-control {
+  background-color: #222 !important;
+  border-radius: 0;
+  color: #1faaf2;
+  border: none;
+}
+
+.add-component {
+  text-align: left;
+}
+
+.add-component2 {
+  display: flex;
+  justify-content: center;
+  background-color: #2b2b2b;
+  padding: 10px;
+}
+
+.Select-menu-outer {
+  border: none;
+}
+
+.Select-menu-outer .is-focused {
+  background-color: #1faaf2 !important;
+  color: #fff;
+}
+
+.Select-option {
+  background-color: #222 !important;
+}
+
+.select-widget {
+  display: inline-block;
+  width: 188px;
+}
+
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+  color: #1faaf2 !important;
+}
+
+.Select-value-label {
+  color: #1faaf2 !important;
+}
+
+.row .Select-control {
+  height: 24px;
+  font-size: 11px;
+}
+
+.row .Select-placeholder,
+.row .Select--single > .Select-control .Select-value {
+  line-height: 23px;
+}
+
+.row .Select-input{
+  height: 22px;
+}
+
+
+.row input[type=text],
+.row input[type=number],
+.row input.string,
+.row input.number {
+  min-height: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #1faaf2;
+  border: 1px solid transparent;
+  background: #222;
 }
