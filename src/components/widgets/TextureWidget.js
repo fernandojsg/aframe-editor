@@ -159,6 +159,7 @@ export default class TextureWidget extends React.Component {
 
   openDialog = () => {
     Events.emit('openTexturesModal', image => {
+      console.info(image);
       if (!image) {
         return;
       }
@@ -168,6 +169,7 @@ export default class TextureWidget extends React.Component {
         var assetId = insertOrGetImageAsset(image.src);
         value = '#' + assetId;
       }
+
       if (this.props.onChange) {
         this.props.onChange(this.props.entity, this.props.componentname, this.props.name, value);
       }
