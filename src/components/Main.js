@@ -4,6 +4,8 @@ const INSPECTOR = require('../lib/inspector.js');
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+THREE.ImageUtils.crossOrigin = '';
+
 const Events = require('../lib/Events.js');
 import ComponentsSidebar from './components/Sidebar';
 import ModalTextures from './modals/ModalTextures';
@@ -71,11 +73,13 @@ export default class Main extends React.Component {
     var scene = this.state.sceneEl;
     var textureDialogOpened = this.state.isModalTexturesOpen;
     let editButton = <a className='toggle-edit' onClick={this.toggleEdit}>{(this.state.inspectorEnabled ? 'Back to Scene' : 'Inspect Scene')}</a>;
+//      textureDialogOpened = true;
 
     return (
       <div>
         {editButton}
         <div id='aframe-inspector-panels' className={this.state.inspectorEnabled ? '' : 'hidden'}>
+          <ModalTextures ref='modaltextures' isOpen={textureDialogOpened}	onClose={this.onModalTextureOnClose}/>
           <div id='left-sidebar'>
             <SceneGraph scene={scene} selectedEntity={this.state.entity}/>
           </div>
@@ -106,7 +110,7 @@ function injectCSS (url) {
   var webFont = document.createElement('script');
   webFont.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
   webFont.addEventListener('load', function () {
-    document.head.appendChild(webFontLoader);  
+    document.head.appendChild(webFontLoader);
   });
   webFont.addEventListener('error', function () {
     console.warn('Could not load WebFont script:', webFont.src);

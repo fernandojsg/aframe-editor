@@ -40,7 +40,7 @@ textarea, input { outline: none; } /* osx */
 
 #left-sidebar,
 #right-panels {
-  z-index: 9999;
+  z-index: 9998;
 }
 
 #sidebar,
@@ -85,7 +85,7 @@ textarea, input { outline: none; } /* osx */
   color: #fff;
   text-decoration: none;
   text-align: center;
-  z-index: 99999;
+  z-index: 9999;
   width: 174px;
 }
 
@@ -212,6 +212,11 @@ input[type=color] {
 
 .texture canvas {
   border: 1px solid #222;
+  cursor: pointer;
+}
+
+.texture canvas:hover {
+  border-color: #1faaf2;
 }
 
 input[type=color] {
@@ -346,6 +351,10 @@ div.vec3 {
   visibility: hidden;
 }
 
+.uploader-normal-button .hidden {
+  display: none;
+}
+
 .texture canvas + input {
   margin-left: 5px;
 }
@@ -385,7 +394,7 @@ a.button:hover {
 
 .modal {
   position: fixed;
-  z-index: 1;
+  z-index: 9999;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -767,5 +776,22 @@ a.help-link:hover {
 .aframe-inspector-opened a-scene .a-canvas {
   position: fixed;
   background-color: #191919;
-  z-index: 9999;
+  z-index: 9998;
+}
+
+.uploadcare-widget-button-open {
+  background-color: #1eaaf1;
+  border-radius: 0px;
+}
+
+.uploadcare-widget-button-open:hover {
+  background-color: #346392;
+}
+
+.new_asset_options li {
+  padding: 5px;
+}
+
+.new_asset_options .imageUrl {
+  width: 400px;
 }

@@ -21,13 +21,12 @@ export default class ModalTextures extends React.Component {
       assetsImages: [],
       samplesImages: [],
       addNewDialogOpened: false,
-      preview: {width: 0, height: 0, src: '', name: '', loaded: false}
+      preview: {width: 0, height: 0, src: '', name: '', filename: '', loaded: false}
     };
   }
 
   componentDidMount () {
-    this.samplesImages = [];
-    /*
+    this.uploadcareWidget = null;
     this.samplesImages = [
       {name: 'create1111', src: 'assets/textures/758px-Canestra_di_frutta_Caravaggio.jpg'},
       {name: 'asdfqwer', src: 'assets/textures/2294472375_24a3b8ef46_o.jpg'},
@@ -39,7 +38,6 @@ export default class ModalTextures extends React.Component {
       {name: 'envmap', src: 'assets/textures/envmap.png'},
       {name: 'brick dump', src: 'assets/textures/brick_bump.jpg'}
     ];
-    */
 
     this.generateFromSamples();
     this.generateFromAssets();
@@ -60,7 +58,29 @@ export default class ModalTextures extends React.Component {
       })
     });*/
   }
-
+  componentDidUpdate () {
+    if (!this.uploadcareWidget && this.state.isOpen) {
+      this.uploadcareWidget = uploadcare.SingleWidget('[role=uploadcare-uploader]');
+      var self = this;
+      this.uploadcareWidget.onUploadComplete(function(info) {
+        if (info.isImage) {
+          self.setState({preview: {
+            width: info.originalImageInfo.height,
+            height: info.originalImageInfo.height,
+            src: info.cdnUrl,
+            id: '',
+            filename: info.name,
+            name: info.name.replace(/\.[^/.]+$/, ''),
+            type: 'uploaded',
+            loaded: true,
+            value: 'url(' + info.cdnUrl + ')'
+          }
+          });
+          self.refs.imageName.focus();
+        }
+      });
+    }
+  }
   componentWillReceiveProps (newProps) {
     if (this.state.isOpen !== newProps.isOpen) {
       this.setState({isOpen: newProps.isOpen});
@@ -120,6 +140,7 @@ export default class ModalTextures extends React.Component {
           src: self.refs.preview.src,
           id: '',
           name: '',
+          filename: '',
           type: 'new',
           loaded: true,
           value: 'url(' + self.refs.preview.src + ')'
@@ -142,13 +163,24 @@ export default class ModalTextures extends React.Component {
     this.setState({addNewDialogOpened: !this.state.addNewDialogOpened});
   }
 
+  openUploader = () => {
+    //var dialog = this.uploadcareWidget.openDialog();
+
+/*
+    uploadcare.openDialog(null, {
+      publicKey: "f43ad452b58f9e853d05",
+      imagesOnly: true,
+      crop: "300x200"
+    });  */
+  }
+
   render () {
     let loadedTextures = this.state.loadedTextures;
     let preview = this.state.preview;
     var self = this;
 
     let addNewAsset = function () {
-      insertNewAsset('img', self.state.preview.name, self.state.preview.src);
+      insertNewAsset('img', self.state.preview.name, self.state.preview.src, true);
       self.generateFromAssets();
       self.toggleNewDialog();
     };
@@ -160,6 +192,7 @@ export default class ModalTextures extends React.Component {
         src: image.src,
         id: '',
         name: image.name, // or id?
+        filename: getFilename(image.src),
         type: 'sample',
         loaded: true,
         value: 'url(' + image.src + ')'
@@ -168,16 +201,24 @@ export default class ModalTextures extends React.Component {
       self.refs.imageName.focus();
     };
 
+    let isOpen = this.state.isOpen;
+
+    let addNewAssetButton = this.state.addNewDialogOpened ? 'CLOSE' : 'ADD NEW ASSET';
+
     return (
-      <Modal title="Textures" isOpen={this.state.isOpen} onClose={this.onClose}>
-        <button onClick={this.toggleNewDialog}>ADD NEW ASSET</button>
+      <Modal title="Textures" isOpen={isOpen} onClose={this.onClose}>
+        <button onClick={this.toggleNewDialog}>{addNewAssetButton}</button>
         <div className={this.state.addNewDialogOpened ? '' : 'hide'}>
           <div className="newimage">
             <div className="new_asset_options">
               <span>Please choose one of the following options to add a new image asset</span>
               <ul>
-                <li><span>Enter URL:</span> <input type="text" value={this.props.newUrl} onChange={this.onNewUrl}/></li>
-                <li><span>Upload file:</span> <input type="file" value={this.props.newUrl} onChange={this.onNewUrl}/></li>
+                <li><span>Enter URL:</span> <input type="text" className='imageUrl' value={this.props.newUrl} onChange={this.onNewUrl}/></li>
+                <li>
+                  <div className="uploader-normal-button">
+                    <input type="hidden" role="uploadcare-uploader"/>
+                  </div>
+                </li>
                 <li><span>Select image from samples</span>
                   <ul className="gallery">
                     {
@@ -201,12 +242,12 @@ export default class ModalTextures extends React.Component {
             </div>
             <div className="preview">
               Image name: <input ref="imageName" type="text" value={this.state.preview.name} onChange={this.onNameChanged}/><br/><br/>
-            <img ref="preview" width="155px" height="155px" src={preview.src}/>
+              <img ref="preview" width="155px" height="155px" src={preview.src}/>
               {
                 this.state.preview.loaded
                  ? (
                   <div className="detail">
-                    <span>{getFilename(preview.src)}</span><br/>
+                    <span>{preview.filename}</span><br/>
                     <span>{preview.width} x {preview.height}</span>
                   </div>
                 ) : <span></span>

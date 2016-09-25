@@ -5,6 +5,7 @@ function ComponentLoader () {
 
 ComponentLoader.prototype = {
   loadComponentsData: function () {
+    return;
     var xhr = new window.XMLHttpRequest();
     // @todo Remove the sync call and use a callback
     xhr.open('GET', 'https://raw.githubusercontent.com/aframevr/aframe-components/master/components.json', false);
