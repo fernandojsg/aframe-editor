@@ -1,18 +1,18 @@
-function insertNewAsset (type, id, src, anonymousCrossOrigin) {
+function insertNewAsset (type, id, src, anonymousCrossOrigin, onLoadedCallback) {
   var element = null;
   switch (type) {
     case 'img': {
       element = document.createElement('img');
+      if (anonymousCrossOrigin) { element.crossOrigin = 'anonymous'; }
       element.id = id;
       element.src = src;
     } break;
   }
 
-  if (anonymousCrossOrigin) {
-    element.crossOrigin = 'anonymous';
-  }
-
   if (element) {
+    element.onload = function () {
+      if (onLoadedCallback) { onLoadedCallback(); }
+    }
     document.getElementsByTagName('a-assets')[0].appendChild(element);
   }
 }

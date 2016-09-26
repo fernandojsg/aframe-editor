@@ -8,6 +8,7 @@ THREE.ImageUtils.crossOrigin = '';
 
 const Events = require('../lib/Events.js');
 import ComponentsSidebar from './components/Sidebar';
+import ModalTextures from './modals/ModalTextures';
 import ModalHelp from './modals/ModalHelp';
 import SceneGraph from './scenegraph/SceneGraph';
 import ToolBar from './ToolBar';
@@ -80,13 +81,12 @@ export default class Main extends React.Component {
   render () {
     var scene = this.state.sceneEl;
     let editButton = <a className='toggle-edit' onClick={this.toggleEdit}>{(this.state.inspectorEnabled ? 'Back to Scene' : 'Inspect Scene')}</a>;
-//      textureDialogOpened = true;
 
     return (
       <div>
         {editButton}
         <div id='aframe-inspector-panels' className={this.state.inspectorEnabled ? '' : 'hidden'}>
-          <ModalTextures ref='modaltextures' isOpen={textureDialogOpened}	onClose={this.onModalTextureOnClose}/>
+          <ModalTextures ref='modaltextures' isOpen={this.state.isModalTexturesOpen}	onClose={this.onModalTextureOnClose}/>
           <div id='left-sidebar'>
             <SceneGraph scene={scene} selectedEntity={this.state.entity}/>
           </div>

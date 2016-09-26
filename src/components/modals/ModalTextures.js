@@ -70,7 +70,7 @@ export default class ModalTextures extends React.Component {
             src: info.cdnUrl,
             id: '',
             filename: info.name,
-            name: info.name.replace(/\.[^/.]+$/, ''),
+            name: info.name.replace(/\.[^/.]+$/, '').replace(/\s+/g, ''),
             type: 'uploaded',
             loaded: true,
             value: 'url(' + info.cdnUrl + ')'
@@ -131,6 +131,8 @@ export default class ModalTextures extends React.Component {
   generateFromTextureCache () {}
 
   onNewUrl = event => {
+    if (event.keyCode !== 13) { return; }
+
     var self = this;
     function onImageLoaded (img) {
       self.setState(
@@ -180,9 +182,10 @@ export default class ModalTextures extends React.Component {
     var self = this;
 
     let addNewAsset = function () {
-      insertNewAsset('img', self.state.preview.name, self.state.preview.src, true);
-      self.generateFromAssets();
-      self.toggleNewDialog();
+      insertNewAsset('img', self.state.preview.name, self.state.preview.src, true, function() {
+        self.generateFromAssets();
+        self.toggleNewDialog();
+      });
     };
 
     let selectSample = function (image) {
@@ -213,7 +216,7 @@ export default class ModalTextures extends React.Component {
             <div className="new_asset_options">
               <span>Please choose one of the following options to add a new image asset</span>
               <ul>
-                <li><span>Enter URL:</span> <input type="text" className='imageUrl' value={this.props.newUrl} onChange={this.onNewUrl}/></li>
+                <li><span>Enter URL (Press Enter):</span> <input type="text" className='imageUrl' value={this.props.newUrl} onKeyUp={this.onNewUrl}/></li>
                 <li>
                   <div className="uploader-normal-button">
                     <input type="hidden" role="uploadcare-uploader"/>
