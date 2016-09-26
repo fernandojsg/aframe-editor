@@ -29,11 +29,9 @@ export default class AddComponent extends React.Component {
       ga('send', 'event', 'Components', 'addComponent', componentName);
     }
 
-    if (origin === 'community') {
+    if (origin === 'registry') {
       var packageName = selectedOption.value;
-      INSPECTOR.componentLoader.addComponentToScene(packageName, function (componentName) {
-        addComponent(componentName);
-      });
+      INSPECTOR.componentLoader.addComponentToScene(packageName, addComponent);
     } else {
       var componentName = selectedOption.value;
       addComponent(componentName);
@@ -55,7 +53,7 @@ export default class AddComponent extends React.Component {
         return <option key={value} origin='core' value={value}>{value}</option>;
       });
 
-    var communityOptions = Object.keys(INSPECTOR.componentLoader.components)
+    var registryOptions = Object.keys(INSPECTOR.componentLoader.components)
       .filter(function (componentPackageName) {
         var component = INSPECTOR.componentLoader.components[componentPackageName];
         return component.multiple ||
@@ -65,10 +63,10 @@ export default class AddComponent extends React.Component {
       .map(function (componentPackageName) {
         var component = INSPECTOR.componentLoader.components[componentPackageName];
         var name = component.name;
-        return <option key={componentPackageName} origin='community' value={componentPackageName}>{name}</option>;
+        return <option key={componentPackageName} origin='registry' value={componentPackageName}>{name}</option>;
       });
 
-    return [commonOptions, communityOptions];
+    return [commonOptions, registryOptions];
   }
 
   render () {
