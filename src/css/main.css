@@ -21,6 +21,10 @@ button {
   position: relative;
 }
 
+code {
+  font-family: Consolas, Andale Mono, Monaco, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
 textarea {
   tab-size: 4;
   white-space: pre;
