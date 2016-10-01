@@ -8,7 +8,7 @@
     <script src="js/aframe.min.js"></script>
   </head>
   <body>
-    <a-scene debug="true" stats>
+    <a-scene stats>
       <a-assets>
         <a-mixin id="blue" material="color: #4CC3D9"></a-mixin>
         <a-mixin id="blueBox" geometry="primitive: box; depth: 2; height: 5; width: 1" material="color: #4CC3D9"></a-mixin>
@@ -24,7 +24,7 @@
         <!--<img id="floorImg" src="https://ucarecdn.com/a114816f-b84f-4b79-b44c-c98592aae6d9/" crossOrigin="anonymous">-->
       </a-assets>
 
-      <!-- Primitive meshes. -->
+      <!-- Meshes. -->
       <a-entity id="blueBox" mixin="blueBox" position="0 8 0"></a-entity>
       <a-entity id="shortOrangeBox" mixin="short orange box" position="-5 2 0"></a-entity>
       <a-entity id="shortYellowBox" mixin="short yellow box" position="5 2 0"></a-entity>
@@ -57,6 +57,8 @@
           </a-entity>
         </a-entity>
       </a-entity>
+
+      <a-sky color="#333"></a-sky>
     </a-scene>
 
     <script src="http://localhost:3333/build/aframe-inspector.js"></script>
