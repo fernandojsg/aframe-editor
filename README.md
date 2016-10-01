@@ -2,7 +2,9 @@
 
 [![build status][travis-image]][travis-url]
 
-An easy-to-use inspector for editing [A-Frame](https://aframe.io) scenes.
+An easy-to-use inspector for editing [A-Frame](https://aframe.io) scenes. Check
+out [the
+guide](https://aframe.io/docs/master/guides/using-the-aframe-inspector.html).
 
 [VIEW DEMO](https://aframe.io/aframe-inspector/example/)
 
