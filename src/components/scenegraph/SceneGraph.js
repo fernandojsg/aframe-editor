@@ -120,9 +120,6 @@ export default class SceneGraph extends React.Component {
             html: html
           });
 
-          if (child.tagName.toLowerCase() !== 'a-entity') {
-            continue;
-          }
           treeIterate(child, depth);
         }
       }
