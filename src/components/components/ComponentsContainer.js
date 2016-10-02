@@ -1,7 +1,8 @@
 import React from 'react';
 import AddComponent from './AddComponent';
 import Component from './Component';
-import {CommonComponents, DEFAULT_COMPONENTS} from './CommonComponents';
+import CommonComponents from './CommonComponents';
+import DEFAULT_COMPONENTS from './DefaultComponents';
 
 export default class ComponentsContainer extends React.Component {
   static propTypes = {

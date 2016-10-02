@@ -1,5 +1,6 @@
 import React from 'react';
 import {InputWidget} from '../widgets';
+import DEFAULT_COMPONENTS from './DefaultComponents';
 import PropertyRow from './PropertyRow';
 import Collapsible from '../Collapsible';
 import Mixins from './Mixins';
@@ -14,9 +15,7 @@ function changeId (entity, componentName, propertyName, value) {
   }
 }
 
-export const DEFAULT_COMPONENTS = ['visible', 'position', 'scale', 'rotation'];
-
-export class CommonComponents extends React.Component {
+export default class CommonComponents extends React.Component {
   static propTypes = {
     entity: React.PropTypes.object
   };

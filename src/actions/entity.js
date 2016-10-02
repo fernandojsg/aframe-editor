@@ -2,7 +2,7 @@ var Events = require('../lib/Events.js');
 var components = AFRAME.components;
 var isSingleProperty = AFRAME.schema.isSingleProperty;
 
-import {DEFAULT_COMPONENTS} from '../components/components/CommonComponents';
+import DEFAULT_COMPONENTS from '../components/components/DefaultComponents';
 
 /**
  * Update a component.

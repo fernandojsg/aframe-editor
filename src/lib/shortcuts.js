@@ -53,5 +53,5 @@ module.exports = {
   },
   disable: function () {
     window.removeEventListener('keyup', this.onKeyUp);
-  },
+  }
 };

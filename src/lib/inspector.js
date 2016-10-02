@@ -164,7 +164,6 @@ Inspector.prototype = {
   },
   initEvents: function () {
     window.addEventListener('keydown', evt => {
-
       // Alt + Ctrl + i: Shorcut to toggle the inspector
       var shortcutPressed = evt.keyCode === 73 && evt.ctrlKey && evt.altKey;
       if (shortcutPressed) {

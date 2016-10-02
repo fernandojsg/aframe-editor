@@ -1,7 +1,7 @@
 import React from 'react';
-var INSPECTOR = require('../../lib/inspector.js');
-var Events = require('../../lib/Events.js');
+import INSPECTOR from '../../lib/inspector';
 
+var Events = require('../../lib/Events.js');
 function GetFilename (url) {
   if (url) {
     var m = url.toString().match(/.*\/(.+?)\./);
