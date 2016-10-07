@@ -17,24 +17,25 @@ export default class AddComponent extends React.Component {
     var selectedOption = this.refs.select.selectedOptions[0];
     var origin = selectedOption.getAttribute('origin');
 
+    if (origin === 'registry') {
+      var [packageName, componentName] = selectedOption.value.split('.');
+      INSPECTOR.componentLoader.addComponentToScene(packageName, componentName)
+        .then(addComponent);
+    } else {
+      var componentName = selectedOption.value;
+      addComponent(componentName);
+    }
+
     function addComponent (componentName) {
       if (AFRAME.components[componentName].multiple &&
           isComponentInstanced(entity, componentName)) {
         componentName = componentName + '__' +
-                           generateComponentInstanceId(entity, componentName);
+                        generateComponentInstanceId(entity, componentName);
       }
 
       entity.setAttribute(componentName, '');
       Events.emit('componentAdded', {entity: entity, component: componentName});
       ga('send', 'event', 'Components', 'addComponent', componentName);
-    }
-
-    if (origin === 'registry') {
-      var packageName = selectedOption.value;
-      INSPECTOR.componentLoader.addComponentToScene(packageName, addComponent);
-    } else {
-      var componentName = selectedOption.value;
-      addComponent(componentName);
     }
   }
 
@@ -62,8 +63,10 @@ export default class AddComponent extends React.Component {
       .sort()
       .map(function (componentPackageName) {
         var component = INSPECTOR.componentLoader.components[componentPackageName];
-        var name = component.name;
-        return <option key={componentPackageName} origin='registry' value={componentPackageName}>{name}</option>;
+        return component.names.map((name, i) =>
+          <option key={componentPackageName + i} origin='registry'
+            value={`${componentPackageName}.${name}`}>{name}</option>
+        );
       });
 
     return [commonOptions, registryOptions];

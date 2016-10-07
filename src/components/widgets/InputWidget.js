@@ -6,7 +6,7 @@ export default class InputWidget extends React.Component {
     entity: React.PropTypes.object,
     name: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func,
-    value: React.PropTypes.string
+    value: React.PropTypes.any
   };
 
   constructor (props) {
