@@ -54,19 +54,24 @@ export default class AddComponent extends React.Component {
         return <option key={value} origin='core' value={value}>{value}</option>;
       });
 
-    var registryOptions = Object.keys(INSPECTOR.componentLoader.components)
-      .filter(function (componentPackageName) {
-        var component = INSPECTOR.componentLoader.components[componentPackageName];
-        return component.multiple ||
-               usedComponents.indexOf(component.name) === -1;
-      })
-      .sort()
-      .map(function (componentPackageName) {
-        var component = INSPECTOR.componentLoader.components[componentPackageName];
-        return component.names.map((name, i) =>
-          <option key={componentPackageName + i} origin='registry'
-            value={`${componentPackageName}.${name}`}>{name}</option>
-        );
+    // Create the list of components that should appear in the registry group
+    var registryComponents = [];
+    Object.keys(INSPECTOR.componentLoader.components)
+      .forEach(function (componentPackageName) {
+        var componentPackage = INSPECTOR.componentLoader.components[componentPackageName];
+        componentPackage.names.forEach(function (componentName) {
+          if (usedComponents.indexOf(componentName) === -1) {
+            registryComponents.push({componentPackageName, componentName});
+          }
+        });
+      });
+      var registryOptions = registryComponents
+        .sort(function (a, b) {
+          return a.componentName >= b.componentName;
+        })
+        .map(function (item) {
+          return <option key={item.componentName} origin='registry'
+            value={`${item.componentPackageName}.${item.componentName}`}>{item.componentName}</option>
       });
 
     return [commonOptions, registryOptions];
