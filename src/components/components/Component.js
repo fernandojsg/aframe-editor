@@ -30,11 +30,13 @@ export default class Component extends React.Component {
     var clipboard = new Clipboard('[data-action="copy-component-to-clipboard"]', {
       text: trigger => {
         var componentName = trigger.getAttribute('data-component').toLowerCase();
+        ga('send', 'event', 'Components', 'copyComponentToClipboard', componentName);
         return getClipboardRepresentation(this.state.entity, componentName);
       }
     });
     clipboard.on('error', e => {
       // @todo Show the error in the UI
+      console.error(e);
     });
 
     Events.on('selectedEntityComponentChanged', detail => {

@@ -160,6 +160,11 @@ export default class SceneGraph extends React.Component {
     }
   }
 
+  cloneEntity = option => {
+    cloneEntity(option);
+    ga('send', 'event', 'SceneGraph', 'cloneEntity');
+  }
+
   renderOptions () {
     var filterText = this.state.filterText.toUpperCase();
     return this.state.options
@@ -175,7 +180,7 @@ export default class SceneGraph extends React.Component {
             onClick={() => this.setValue(option.value)}>
             <span dangerouslySetInnerHTML={{__html: option.html}}></span>
               <span className="icons">
-                <a onClick={() => cloneEntity(option.value)}
+                <a onClick={() => this.cloneEntity(option.value)}
                   title="Clone entity" className="button fa fa-clone"></a>
                 <a onClick={event => { event.stopPropagation(); removeEntity(option.value); } }
                   title="Remove entity" className="button fa fa-trash-o"></a>

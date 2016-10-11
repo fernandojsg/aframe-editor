@@ -20,6 +20,7 @@ export default class Sidebar extends React.Component {
   componentDidMount () {
     var clipboard = new Clipboard('[data-action="copy-entity-to-clipboard"]', {
       text: trigger => {
+        ga('send', 'event', 'Components', 'copyEntityToClipboard');
         return getClipboardRepresentation(this.state.entity);
       }
     });
