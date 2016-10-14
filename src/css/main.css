@@ -822,7 +822,7 @@ span.entity-name {
   text-align: left;
 }
 
-.add-component2 {
+.add-component-container {
   display: flex;
   justify-content: center;
   background-color: #2b2b2b;
