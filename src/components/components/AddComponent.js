@@ -1,5 +1,4 @@
 import React from 'react';
-import Collapsible from '../Collapsible';
 import Events from '../../lib/Events';
 var INSPECTOR = require('../../lib/inspector.js');
 import Select from 'react-select';
@@ -16,17 +15,17 @@ export default class AddComponent extends React.Component {
    */
   addComponent = (componentName) => {
     var entity = this.props.entity;
-    var select = this.refs.select;
+    var packageName;
     var selectedOption = this.options.filter(function (option) {
       return option.value === componentName;
     })[0];
 
     if (selectedOption.origin === 'registry') {
-      var [packageName, componentName] = selectedOption.value.split('.');
+      [packageName, componentName] = selectedOption.value.split('.');
       INSPECTOR.componentLoader.addComponentToScene(packageName, componentName)
         .then(addComponent);
     } else {
-      var componentName = selectedOption.value;
+      componentName = selectedOption.value;
       addComponent(componentName);
     }
 
@@ -69,16 +68,16 @@ export default class AddComponent extends React.Component {
           }
         });
       });
-      var registryOptions = registryComponents
-        .sort(function (a, b) {
-          return a.componentName >= b.componentName;
-        })
-        .map(function (item) {
-          return {value: item.componentPackageName+'.'+item.componentName, label: item.componentName, origin: 'registry'};
+    var registryOptions = registryComponents
+      .sort(function (a, b) {
+        return a.componentName >= b.componentName;
+      })
+      .map(function (item) {
+        return {value: item.componentPackageName + '.' + item.componentName,
+          label: item.componentName, origin: 'registry'};
       });
 
-    // return [commonOptions, registryOptions];
-   this.options = commonOptions.concat(registryOptions);
+    this.options = commonOptions.concat(registryOptions);
   }
 
   render () {

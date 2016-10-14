@@ -8,7 +8,6 @@ THREE.ImageUtils.crossOrigin = '';
 
 const Events = require('../lib/Events.js');
 import ComponentsSidebar from './components/Sidebar';
-import ModalTextures from './modals/ModalTextures';
 import SceneGraph from './scenegraph/SceneGraph';
 import ToolBar from './ToolBar';
 
@@ -71,7 +70,6 @@ export default class Main extends React.Component {
 
   render () {
     var scene = this.state.sceneEl;
-    var textureDialogOpened = this.state.isModalTexturesOpen;
     let editButton = <a className='toggle-edit' onClick={this.toggleEdit}>{(this.state.inspectorEnabled ? 'Back to Scene' : 'Inspect Scene')}</a>;
 //      textureDialogOpened = true;
 

@@ -4,10 +4,9 @@ import DEFAULT_COMPONENTS from './DefaultComponents';
 import PropertyRow from './PropertyRow';
 import Collapsible from '../Collapsible';
 import Mixins from './Mixins';
-import {updateEntity} from '../../actions/entity';
+import {updateEntity, getClipboardRepresentation} from '../../actions/entity';
 import Events from '../../lib/Events';
 import Clipboard from 'clipboard';
-import {getClipboardRepresentation} from '../../actions/entity';
 
 // @todo Take this out and use updateEntity?
 function changeId (entity, componentName, propertyName, value) {
