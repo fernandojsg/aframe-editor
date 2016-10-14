@@ -13,7 +13,7 @@
     "lint": "npm run lintfile src/",
     "lintfile": "node --harmony node_modules/.bin/eslint",
     "preghpages": "npm run dist:min && shx rm -rf gh-pages && shx mkdir gh-pages && shx cp -r dist example index.html gh-pages && mv gh-pages/dist gh-pages/build && shx sed -i http://localhost:3333 .. gh-pages/example/index.html && shx sed -i ../dist/aframe-inspector.js dist/aframe-inspector.min.js gh-pages/example/index.html",
-    "start": "cross-env NODE_ENV=dev webpack-dev-server --progress --colors --hot -d --open",
+    "start": "cross-env NODE_ENV=dev webpack-dev-server --progress --colors --hot -d --open --host 0.0.0.0",
     "test": "jest --watch",
     "test:ci": "jest"
   },
