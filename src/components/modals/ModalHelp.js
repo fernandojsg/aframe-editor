@@ -48,7 +48,7 @@ export default class ModalHelp extends React.Component {
     ];
 
     return (
-      <Modal title="Shortcuts" isOpen={this.state.isOpen} onClose={this.onClose}>
+      <Modal title="Shortcuts" isOpen={this.state.isOpen} onClose={this.onClose} extraCloseKeyCode={72}>
         <div className="help-lists">
         {
           shortcuts.map(function (column, idx) {

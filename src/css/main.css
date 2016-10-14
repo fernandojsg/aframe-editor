@@ -869,7 +869,6 @@ span.entity-name {
   height: 22px;
 }
 
-
 .row input[type=text],
 .row input[type=number],
 .row input.string,
@@ -880,6 +879,7 @@ span.entity-name {
   color: #1faaf2;
   border: 1px solid transparent;
   background: #222;
+}
 
 /* shortcuts help */
 .help-lists {

@@ -7,6 +7,7 @@ export default class Modal extends React.Component {
       React.PropTypes.element
     ]).isRequired,
     isOpen: React.PropTypes.bool,
+    extraCloseKeyCode: React.PropTypes.number,
     onClose: React.PropTypes.func,
     title: React.PropTypes.string
   };
@@ -22,7 +23,8 @@ export default class Modal extends React.Component {
   }
 
   handleGlobalKeydown = event => {
-    if (this.state.isOpen && event.keyCode === 27) {
+    if (this.state.isOpen && (event.keyCode === 27 ||
+      this.props.extraCloseKeyCode && event.keyCode === this.props.extraCloseKeyCode)) {
       this.close();
 
       // Prevent closing the inspector
