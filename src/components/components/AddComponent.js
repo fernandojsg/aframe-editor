@@ -15,14 +15,13 @@ export default class AddComponent extends React.Component {
    * If component is instanced, generate an ID.
    */
   addComponent = (componentName) => {
-
     var entity = this.props.entity;
     var select = this.refs.select;
     var selectedOption = this.options.filter(function (option) {
       return option.value === componentName;
     })[0];
 
-    if (origin === 'registry') {
+    if (selectedOption.origin === 'registry') {
       var [packageName, componentName] = selectedOption.value.split('.');
       INSPECTOR.componentLoader.addComponentToScene(packageName, componentName)
         .then(addComponent);

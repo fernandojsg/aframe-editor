@@ -35,7 +35,6 @@ ComponentLoader.prototype = {
    */
   addComponentToScene: function (packageName, componentName) {
     const component = this.components[packageName];
-
     if (component.included) { return Promise.resolve(componentName); }
 
     let script = document.createElement('script');
