@@ -880,4 +880,56 @@ span.entity-name {
   color: #1faaf2;
   border: 1px solid transparent;
   background: #222;
+
+/* shortcuts help */
+.help-lists {
+  display: flex;
+  justify-content: space-around;
+}
+
+.help-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 10px 0;
+  width: 350px;
+}
+
+.help-list li {
+  margin-right: 40px;
+}
+
+.help-key-unit {
+  line-height: 1.8;
+  margin-right: 2em;
+  padding: 5px 0;
+}
+
+.help-key {
+  min-width: 60px;
+  position: relative;
+  bottom: 2px;
+  margin-right: 4px;
+}
+
+.help-key span {
+  font-size: 12px;
+  color: #555;
+  display: inline-block;
+  padding: 0 8px;
+  text-align: center;
+  background-color: #eee;
+  background-repeat: repeat-x;
+  background-image: linear-gradient(#f5f5f5 0%, #eee 100%);
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 0 #ccc;
+  box-shadow: inset 0 1px 0 #fff, 0 1px 0 #ccc;
+}
+
+.help-key-def {
+  display: inline-block;
+  margin-left: 1em;
+  color: #BBB;
 }

@@ -8,6 +8,7 @@ THREE.ImageUtils.crossOrigin = '';
 
 const Events = require('../lib/Events.js');
 import ComponentsSidebar from './components/Sidebar';
+import ModalHelp from './modals/ModalHelp';
 import SceneGraph from './scenegraph/SceneGraph';
 import ToolBar from './ToolBar';
 
@@ -47,6 +48,14 @@ export default class Main extends React.Component {
     Events.on('inspectorModeChanged', enabled => {
       this.setState({inspectorEnabled: enabled});
     });
+
+    Events.on('openHelpModal', () => {
+      this.setState({isHelpOpen: true});
+    });
+  }
+
+  onCloseHelpModal = value => {
+    this.setState({isHelpOpen: false});
   }
 
   onModalTextureOnClose = value => {
@@ -86,6 +95,7 @@ export default class Main extends React.Component {
             <ComponentsSidebar entity={this.state.entity}/>
           </div>
         </div>
+        <ModalHelp isOpen={this.state.isHelpOpen} onClose={this.onCloseHelpModal}/>
       </div>
     );
   }

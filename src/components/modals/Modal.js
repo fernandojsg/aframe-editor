@@ -24,6 +24,9 @@ export default class Modal extends React.Component {
   handleGlobalKeydown = event => {
     if (this.state.isOpen && event.keyCode === 27) {
       this.close();
+
+      // Prevent closing the inspector
+      event.stopPropagation();
     }
   }
 

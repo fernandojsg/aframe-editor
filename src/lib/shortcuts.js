@@ -7,6 +7,11 @@ module.exports = {
   onKeyUp: function (event) {
     if (!shouldCaptureKeyEvent(event)) { return; }
 
+    // h: help
+    if (event.keyCode === 72) {
+      Events.emit('openHelpModal');
+    }
+
     // esc: close inspector
     if (event.keyCode === 27) {
       AFRAME.INSPECTOR.close();
