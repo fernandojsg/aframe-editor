@@ -1,4 +1,5 @@
 import React from 'react';
+import {getMajorVersion} from '../lib/utils.js';
 
 /**
  * Get the list of modified properties
@@ -42,7 +43,7 @@ export function getClipboardRepresentation (entity, componentName) {
 export function getComponentDocsUrl (componentName) {
   if (AFRAME.components[componentName]) {
     // Returns link from the core components
-    return 'https://aframe.io/docs/' + AFRAME.version + '/components/' +
+    return 'https://aframe.io/docs/' + getMajorVersion(AFRAME.version) + '/components/' +
       (componentName === 'camera' ? '' : componentName.toLowerCase() + '.html');
   }
 }
