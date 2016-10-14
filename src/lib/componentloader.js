@@ -1,3 +1,4 @@
+/* global XMLHttpRequest JSON */
 import {getMajorVersion} from './utils.js';
 
 const registryBaseUrl = 'https://aframe.io/aframe-registry/build/';
@@ -15,13 +16,13 @@ ComponentLoader.prototype = {
    * XHR the registry JSON.
    */
   loadFromRegistry: function () {
-    var xhr = new window.XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
 
     // @todo Remove the sync call and use a callback
     xhr.open('GET', registryBaseUrl + getMajorVersion(AFRAME.version) + '.json');
 
     xhr.onload = () => {
-      this.components = window.JSON.parse(xhr.responseText).components;
+      this.components = JSON.parse(xhr.responseText).components;
       console.info('Components in registry:', Object.keys(this.components).length);
     };
     xhr.onerror = () => { console.error('Error loading registry file.'); };
@@ -45,10 +46,10 @@ ComponentLoader.prototype = {
     script.setAttribute('data-package-name', packageName);
 
     return new Promise(resolve => {
-      script.onload = script.onreadystatechange = function () {
+      script.addEventListener('load', () => {
         script.onreadystatechange = script.onload = null;
         resolve(componentName);
-      };
+      });
       (document.head || document.body).appendChild(script);
       component.included = true;
     });
