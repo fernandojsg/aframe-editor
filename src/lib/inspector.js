@@ -50,7 +50,7 @@ Inspector.prototype = {
       this.EDITOR_CAMERA = this.inspectorCameraEl.getObject3D('camera');
       this.initUI();
     });
-    this.inspectorCameraEl.setAttribute('camera', {far: 10000, fov: 50, near: 1, active: true});
+    this.inspectorCameraEl.setAttribute('camera', {far: 10000, fov: 50, near: 0.1, active: true});
     document.querySelector('a-scene').appendChild(this.inspectorCameraEl);
   },
   initUI: function () {
