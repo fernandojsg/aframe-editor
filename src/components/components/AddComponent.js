@@ -55,8 +55,7 @@ export default class AddComponent extends React.Component {
       })
       .sort()
       .map(function (value) {
-//        return <option key={value} origin='core' value={value}>{value}</option>;
-        return {value: value, label: value};
+        return {value: value, label: value, origin: 'loaded'};
       });
 
     // Create the list of components that should appear in the registry group
