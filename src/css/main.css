@@ -344,6 +344,8 @@ div.vec3 {
   display: inline-block;
   vertical-align: middle;
   width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .components .row .map_value {

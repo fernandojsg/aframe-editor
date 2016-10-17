@@ -80,7 +80,7 @@ export default class PropertyRow extends React.Component {
 
   render () {
     const props = this.props;
-    const title = 'type: ' + props.schema.type + ' value: ' + JSON.stringify(props.data);
+    const title = props.name + '\n - type: ' + props.schema.type + '\n - value: ' + JSON.stringify(props.data);
     const helpLink = props.showHelp ? getComponentDocsHtmlLink(props.name) : '';
     return (
       <div className='row'>
