@@ -820,17 +820,6 @@ span.entity-name {
   border: none;
 }
 
-.add-component {
-  text-align: left;
-}
-
-.add-component-container {
-  display: flex;
-  justify-content: center;
-  background-color: #2b2b2b;
-  padding: 10px;
-}
-
 .Select-menu-outer {
   border: none;
 }
@@ -930,4 +919,29 @@ span.entity-name {
   display: inline-block;
   margin-left: 1em;
   color: #BBB;
+}
+
+.add-component {
+  text-align: left;
+}
+
+.add-component-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2b2b2b;
+  padding: 10px;
+}
+
+.aregistry {
+  padding: 6px;
+}
+
+.aregistry:hover {
+  background-color: #1faaf2;
+}
+
+.aregistry img {
+  width: 20px;
+  height: 20px;
 }
