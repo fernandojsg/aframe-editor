@@ -425,6 +425,7 @@ a.button:hover {
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.6);
+  animation: animateopacity 0.2s ease-out;
 }
 
 .modal h3 {
@@ -438,7 +439,7 @@ a.button:hover {
   background-color: #232323;
   margin: auto;
   padding: 0;
-  width: 920px;
+  width: 940px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5),0 6px 20px 0 rgba(0,0,0,0.5);
   animation: animatetop 0.2s ease-out;
   max-height: 90%;
@@ -447,8 +448,13 @@ a.button:hover {
 }
 
 @keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
+  from {top: 50px;}
+  to {top: 0;}
+}
+
+@keyframes animateopacity {
+  from {opacity: 0}
+  to {opacity: 1}
 }
 
 .close {
@@ -485,10 +491,16 @@ a.button:hover {
 /* Gallery */
 .gallery {
   padding: 3px;
-  margin: 20px auto 0 auto;
+  margin: 15px auto 0 auto;
   overflow: auto;
   max-height: 50vh;
+  background: #232323;
 }
+
+.newimage .gallery {
+  padding: 16px;
+}
+
 
 
 .gallery li {
@@ -543,9 +555,13 @@ a.button:hover {
   padding: 10px;
 }
 
-.new_asset_options {
-  float: left;
-  width: 600px;
+.preview input {
+  display: block;
+  margin: 8px 0;
+  width: 144px;
+}
+.preview button {
+  width: 155px;
 }
 
 .modal button {
@@ -583,9 +599,17 @@ a.button:hover {
 }
 
 .newimage {
+  margin-top: 10px;
   padding: 10px;
   background-color: #323232;
   overflow:auto;
+  font-size: 13px;
+  color: #bcbcbc;
+}
+
+.newimage input{
+  padding: 3px 5px;
+  color: #1eaaf1;
 }
 
 .hide {
@@ -830,19 +854,32 @@ a.help-link:hover {
   background-color: #1eaaf1;
   border-radius: 0px;
   cursor: pointer;
-  padding: 10px 20px;
+  padding: 10px 15px;
+  margin-left: 10px;
 }
 
 .uploadcare-widget-button-open:hover {
   background-color: #346392;
 }
 
-.new_asset_options > ul > li {
+.new_asset_options {
+  float: left;
+  width: 580px;
+  margin: 10px;
+}
+
+.new_asset_options > ul {
   padding: 5px;
+  margin-left: 10px;
+}
+
+.new_asset_options > ul > li {
+  padding: 10px 0;
 }
 
 .new_asset_options .imageUrl {
-  width: 400px;
+  width: 350px;
+  margin-left: 5px;
 }
 
 span.entity-name {

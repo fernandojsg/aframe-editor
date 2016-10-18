@@ -206,7 +206,7 @@ export default class ModalTextures extends React.Component {
 
     let isOpen = this.state.isOpen;
 
-    let addNewAssetButton = this.state.addNewDialogOpened ? 'BACK' : 'ADD TEXTURE';
+    let addNewAssetButton = this.state.addNewDialogOpened ? 'BACK' : 'LOAD TEXTURE';
 
     return (
       <Modal title="Textures" isOpen={isOpen} onClose={this.onClose}>
@@ -214,15 +214,15 @@ export default class ModalTextures extends React.Component {
         <div className={this.state.addNewDialogOpened ? '' : 'hide'}>
           <div className="newimage">
             <div className="new_asset_options">
-              <span>Please choose one of the following options to add a new image asset</span>
+              <span>Load a new texture from one of these sources:</span>
               <ul>
-                <li><span>Enter URL (Press Enter):</span> <input type="text" className='imageUrl' value={this.props.newUrl} onKeyUp={this.onNewUrl}/></li>
+                <li><span>From URL (and press Enter):</span> <input type="text" className='imageUrl' value={this.props.newUrl} onKeyUp={this.onNewUrl}/></li>
                 <li>
                   <div className="uploader-normal-button">
-                    <input type="hidden" role="uploadcare-uploader"/>
+                    From a file: <input type="hidden" role="uploadcare-uploader"/>
                   </div>
                 </li>
-                <li><span>Select image from samples</span>
+                <li><span>From samples gallery:</span>
                   <ul className="gallery">
                     {
                       this.state.samplesImages.map(function (image) {
@@ -244,7 +244,7 @@ export default class ModalTextures extends React.Component {
               </ul>
             </div>
             <div className="preview">
-              Image name: <input ref="imageName" type="text" value={this.state.preview.name} onChange={this.onNameChanged}/><br/><br/>
+              Name: <input ref="imageName" type="text" value={this.state.preview.name} onChange={this.onNameChanged}/>
               <img ref="preview" width="155px" height="155px" src={preview.src}/>
               {
                 this.state.preview.loaded
@@ -256,7 +256,7 @@ export default class ModalTextures extends React.Component {
                 ) : <span></span>
               }
               <br/><br/>
-              <button onClick={addNewAsset}>ADD IMAGE TO ASSETS</button>
+              <button onClick={addNewAsset}>LOAD THIS TEXTURE</button>
             </div>
           </div>
         </div>
