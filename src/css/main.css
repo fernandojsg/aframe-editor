@@ -933,15 +933,17 @@ span.entity-name {
   padding: 10px;
 }
 
-.aregistry {
-  padding: 6px;
+.aregistry-button {
+  padding: 8px;
+  font-size: 12px;
+  margin-left: 10px;
 }
 
-.aregistry:hover {
+.aregistry-button:hover {
   background-color: #1faaf2;
 }
 
-.aregistry img {
+.aregistry-button img {
   width: 20px;
   height: 20px;
 }
