@@ -8,6 +8,22 @@ body.aframe-inspector-opened {
   overflow: hidden;
 }
 
+::-webkit-scrollbar {
+  width:  10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #20b1fb;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+
+}body {
+  scrollbar-face-color: #20b1fb;
+  scrollbar-track-color: #000;
+}
+
+
 hr {
   border: 0;
   border-top: 1px solid #ccc;
@@ -408,7 +424,13 @@ a.button:hover {
   height: 100%;
   overflow: auto;
   background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal h3 {
+  font-size: 24px;
+  font-weight: 100;
+  margin: 0.6em 0;
 }
 
 .modal-content {
@@ -416,10 +438,12 @@ a.button:hover {
   background-color: #232323;
   margin: auto;
   padding: 0;
-  width: 889px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  animation-name: animatetop;
-  animation-duration: 0.2s
+  width: 920px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5),0 6px 20px 0 rgba(0,0,0,0.5);
+  animation: animatetop 0.2s ease-out;
+  max-height: 90%;
+  max-height: calc(100% - 100px);
+  overflow: hidden;
 }
 
 @keyframes animatetop {
@@ -442,12 +466,13 @@ a.button:hover {
 }
 
 .modal-header {
-  padding: 2px 16px;
+  padding: 2px 16px 0px 30px;
   color: white;
 }
 
 .modal-body {
-  padding: 16px;
+  padding: 30px;
+  padding-top: 10px;
   overflow: auto;
 }
 
@@ -459,42 +484,57 @@ a.button:hover {
 
 /* Gallery */
 .gallery {
-  padding: 0px;
-  overflow:auto;
-  margin: 0 auto;
+  padding: 3px;
+  margin: 20px auto 0 auto;
+  overflow: auto;
+  max-height: 50vh;
 }
+
 
 .gallery li {
   width: 155px;
-  margin: 8px;
+  margin-right: 16px;
+  margin-bottom: 16px;
   float: left;
   overflow: hidden;
   display: inline-block;
-  box-shadow: 3px 3px 8px -2px rgba(0,0,0,0.63);
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.6);
   cursor: pointer;
+  border-radius: 2px;
 }
 
 .gallery li:hover {
-  box-shadow: 0px 0px 4px 3px rgba(29,138,190,0.63);
+  box-shadow: 0px 0px 0px 2px #1eaaf1;
 }
 
 .gallery li .detail {
   background-color: #323232;
-  padding: 10px;
+  padding: 3px 10px;
   min-height: 60px;
+  margin: 0;
 }
 
 .gallery li:hover .detail {
   background-color: #444;
 }
 
+
 .gallery li .detail span {
-  color: #BBB !important;
+  color: #777;
+  display: block;
+  width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+.gallery li:hover .detail span {
+  color: #888;
 }
 
 .gallery li .detail span.title {
-  color: #EEE !important;
-  font-weight: bold;
+  color: #FFF !important;
 }
 
 .preview {
@@ -789,13 +829,15 @@ a.help-link:hover {
 .uploadcare-widget-button-open {
   background-color: #1eaaf1;
   border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 20px;
 }
 
 .uploadcare-widget-button-open:hover {
   background-color: #346392;
 }
 
-.new_asset_options li {
+.new_asset_options > ul > li {
   padding: 5px;
 }
 

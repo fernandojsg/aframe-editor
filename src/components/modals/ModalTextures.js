@@ -206,7 +206,7 @@ export default class ModalTextures extends React.Component {
 
     let isOpen = this.state.isOpen;
 
-    let addNewAssetButton = this.state.addNewDialogOpened ? 'CLOSE' : 'ADD NEW ASSET';
+    let addNewAssetButton = this.state.addNewDialogOpened ? 'BACK' : 'ADD TEXTURE';
 
     return (
       <Modal title="Textures" isOpen={isOpen} onClose={this.onClose}>
@@ -231,9 +231,9 @@ export default class ModalTextures extends React.Component {
                           <li key={image.src} onClick={imageClick}>
                             <img width="155px" height="155px" src={image.src}/>
                             <div className="detail">
-                              <span className="title">{image.name}</span><br/>
-                              <span>{getFilename(image.src)}</span><br/>
-                              <span><em>{image.width} x {image.height}</em></span>
+                              <span className="title">{image.name}</span>
+                              <span>{getFilename(image.src)}</span>
+                              <span>{image.width} x {image.height}</span>
                             </div>
                           </li>
                         );
@@ -269,9 +269,9 @@ export default class ModalTextures extends React.Component {
                  <li key={image.id} onClick={textureClick}>
                    <img width="155px" height="155px" src={image.src}/>
                    <div className="detail">
-                     <span className="title">{image.name}</span><br/>
-                     <span>{getFilename(image.src)}</span><br/>
-                     <span><em>{image.width} x {image.height}</em></span>
+                     <span className="title">{image.name}</span>
+                     <span>{getFilename(image.src)}</span>
+                     <span>{image.width} x {image.height}</span>
                    </div>
                  </li>
                 );
@@ -285,9 +285,9 @@ export default class ModalTextures extends React.Component {
                  <li key={texture.uuid} onClick={textureClick}>
                    <img width="155px" height="155px" src={image.src}/>
                    <div className="detail">
-                     <span className="title">Name:</span> <span>{image.name}</span><br/>
-                     <span className="title">Filename:</span> <span>{getFilename(image.src)}</span><br/>
-                     <span><em>{image.width} x {image.height}</em></span>
+                     <span className="title">Name:</span> <span>{image.name}</span>
+                     <span className="title">Filename:</span> <span>{getFilename(image.src)}</span>
+                     <span>{image.width} x {image.height}</span>
                    </div>
                  </li>
                 );
